@@ -1,0 +1,7 @@
+data/
+jobs/
+run.log
+results.tsv
+.hive/
+__pycache__/
+*.pyc

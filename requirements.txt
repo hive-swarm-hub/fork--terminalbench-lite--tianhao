@@ -1,0 +1,3 @@
+harbor>=0.1.40
+litellm>=1.0.0
+tenacity>=8.0.0
