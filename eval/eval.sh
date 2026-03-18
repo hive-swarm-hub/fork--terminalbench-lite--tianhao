@@ -6,7 +6,7 @@ if [ ! -f "data/test.jsonl" ]; then
     exit 1
 fi
 
-MODEL="${SOLVER_MODEL:-openai/gpt-4.1}"
+MODEL="${SOLVER_MODEL:-openai/gpt-5.4-mini}"
 
 TASK_FLAGS=$(python3 -c "
 import json
