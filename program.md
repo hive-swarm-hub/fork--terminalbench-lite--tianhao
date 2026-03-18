@@ -82,11 +82,7 @@ LOOP FOREVER:
 3. git commit
 4. Run the experiment: `bash eval/eval.sh > run.log 2>&1`
 5. Read the results from the summary at the end of run.log.
-6. **Review per-task trajectories**: Check `jobs/` for the latest run directory. Each task has:
-   - `jobs/<run_id>/<task>/agent/` — agent trajectory (commands executed, LLM responses)
-   - `jobs/<run_id>/<task>/verifier/` — test results (reward.txt, test output)
-   - `jobs/<run_id>/<task>/result.json` — summary with pass/fail, token usage, cost
-   Read the failed tasks to understand what the agent tried and where it went wrong.
+6. **Review artifacts**: Search `jobs/` for agent trajectories and test results. Study the failures before forming your next hypothesis.
 7. Record in results.tsv (do not commit results.tsv).
 8. If accuracy improved, keep. If not, `git reset --hard HEAD~1`.
 
