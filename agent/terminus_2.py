@@ -436,7 +436,7 @@ class Terminus2(BaseAgent):
 
         return token_counter(model=self._model_name, messages=chat.messages)
 
-    def _limit_output_length(self, output: str, max_bytes: int = 8000) -> str:
+    def _limit_output_length(self, output: str, max_bytes: int = 10000) -> str:
         """
         Limit output to specified byte length, keeping first and last portions.
 
