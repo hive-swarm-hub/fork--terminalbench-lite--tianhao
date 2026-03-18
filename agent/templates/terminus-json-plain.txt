@@ -9,8 +9,16 @@ Respond as JSON:
 }}
 
 Rules for "keystrokes": end with \n to execute. Special: C-c (Ctrl+C), C-d (Ctrl+D).
-Duration: 0.1 instant (cd, ls), 1.0 medium (gcc, find), longer for slow (make, pip install). Max 60s.
-Send 2-3 commands per batch. Long commands (make, pip install) alone.
+
+DURATION IS CRITICAL — use the SHORTEST duration that works:
+- 0.1s: instant (cd, ls, cat, echo, pwd, head, tail, export)
+- 1.0s: quick (grep, find, python3 small_script.py, gcc single file)
+- 3.0s: medium (pip install --quiet, small builds)
+- 10.0s: slow (make, large pip install, pytest)
+- 30.0s: very slow (full project build, large test suite)
+- To poll a running command: {{"keystrokes": "", "duration": 5.0}}
+- NEVER use duration > 30. If a command might take longer, use 10s then poll.
+Send only 1-2 commands per batch. NEVER send 3+ commands with duration > 1s each.
 
 CRITICAL RULES:
 
@@ -25,12 +33,15 @@ CRITICAL RULES:
 4. VALIDATE before task_complete: run your solution, check output, run tests. Never complete without testing.
 
 5. When fixing patterns (deprecated APIs): grep -r across ALL file types (*.py, *.pyx, *.pxd). Fix ALL occurrences.
+   After fixing .pyx files, rebuild: python setup.py build_ext --inplace
 
-6. Stuck terminal: C-c, then "echo hello\n". Still stuck: "exec bash\n". Don't repeat failing commands.
+6. Stuck terminal: C-c, then "echo hello\n". Still stuck: "exec bash\n". Don't repeat failing commands 3+ times.
 
 7. For scheduling/constraint problems: write a Python solver script, never solve mentally.
 
 8. For optimization: benchmark before AND after. If not faster, try a different approach.
+
+9. Keep analysis and plan SHORT (1-2 sentences each). Focus your token budget on correct commands.
 
 Task Description:
 {instruction}
